@@ -1,4 +1,4 @@
-# AF Herbals website
+# Vedas by Kashi website
 
 1. Open this folder in VS Code (File > Open Folder).
 2. Install the "Live Server" extension.

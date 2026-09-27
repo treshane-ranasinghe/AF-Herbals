@@ -8,11 +8,9 @@
 const WHATSAPP_NUMBER = "94XXXXXXXXX";
 
 const PRODUCTS = {
-  pack:   {name:"Whitening Pack",            meta:"Herbal face pack · 100 g · Brighten, glow, even tone", glow:"#B8913A"},
-  lotion: {name:"Bright Blast Body Lotion",  meta:"Body lotion · 100 ml · Soft, smooth, radiant",          glow:"#6A45A6"},
-  cream:  {name:"Bright Blast Night Cream",  meta:"Brightening night cream · Rs. 2,000",                   glow:"#4B63C9"},
-  toner:  {name:"Pure Touch Herbal Toner",   meta:"Hydrating skin-prep toner · 20 ml · Alcohol free",      glow:"#C8336B"},
-  oil:    {name:"MagicGrow Herbal Hair Oil", meta:"Herbal hair oil · Roots, scalp, shine",       glow:"#B23A2E"}
+  glow:  {name:"Natural Glow Face Pack Powder", meta:"Face pack powder · 50 g · Clears pores & brightens",   glow:"#B8913A"},
+  oil:   {name:"Kumkumadi Face Oil",            meta:"Ayurvedic skin elixir · 30 ml · Radiance, repair",     glow:"#C9782E"},
+  scrub: {name:"Coffee-Coconut Body Scrub",     meta:"Body scrub · 200 g · Coffee & coconut",               glow:"#7A4E32"}
 };
 
 /* --- Shelf: picking a product changes the page glow --- */
@@ -34,14 +32,14 @@ items.forEach(b=>b.addEventListener("click",()=>pick(b.dataset.p)));
 /* --- WhatsApp links: product buttons open a chat with that product named --- */
 document.querySelectorAll("[data-wa]").forEach(a=>{
   const card=a.closest(".product");
-  const msg=a.dataset.msg || (card ? `Hello AF Herbals, I'd like to order the ${PRODUCTS[card.dataset.id].name}.` : "Hello AF Herbals, I'd like to place an order.");
+  const msg=a.dataset.msg || (card ? `Hello Vedas by Kashi, I'd like to order the ${PRODUCTS[card.dataset.id].name}.` : "Hello Vedas by Kashi, I'd like to place an order.");
   a.href=`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 });
 
 document.getElementById("yr").textContent=new Date().getFullYear();
 
 /* --- Motion: reveal sections as they scroll into view --- */
-const groups = [".head", ".product", ".set", ".herb", ".promise > div", ".freefrom li", ".order", ".steps li"];
+const groups = [".head", ".product", ".spot-copy", ".spot-media", ".film-media", ".film-copy", ".ing-photo", ".ing-copy", ".promise > div", ".freefrom li", ".order", ".steps li"];
 groups.forEach(sel=>document.querySelectorAll(sel).forEach((el,i)=>{
   el.classList.add("reveal");
   el.style.setProperty("--d", (sel===".product" ? 0 : (i%5)*0.1) + "s");
@@ -74,3 +72,20 @@ const setMenu=open=>{ nav.classList.toggle("open",open); menuBtn.setAttribute("a
 menuBtn.addEventListener("click",()=>setMenu(!nav.classList.contains("open")));
 document.querySelectorAll("#navList a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
 addEventListener("keydown",e=>{ if(e.key==="Escape") setMenu(false); });
+
+/* --- Videos: play muted while on screen, pause when scrolled away; sound button toggles audio --- */
+const calm=matchMedia("(prefers-reduced-motion: reduce)").matches;
+document.querySelectorAll(".vframe").forEach(frame=>{
+  const v=frame.querySelector("video"), b=frame.querySelector(".snd");
+  if(calm){ v.controls=true; }
+  else if("IntersectionObserver" in window){
+    new IntersectionObserver(([e])=>{ e.isIntersecting ? v.play().catch(()=>{}) : v.pause(); },{threshold:.35}).observe(v);
+  }
+  b.addEventListener("click",()=>{
+    const on=v.muted;
+    document.querySelectorAll(".vframe video").forEach(o=>{ if(o!==v){ o.muted=true; } });
+    document.querySelectorAll(".snd").forEach(o=>{ if(o!==b){ o.setAttribute("aria-pressed","false"); o.setAttribute("aria-label","Turn sound on"); } });
+    v.muted=!on; if(on) v.play().catch(()=>{});
+    b.setAttribute("aria-pressed",on); b.setAttribute("aria-label",on?"Turn sound off":"Turn sound on");
+  });
+});
