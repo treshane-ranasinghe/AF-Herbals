@@ -1,4 +1,4 @@
-# Vedas by Kashi website
+# Skintreat by AK website
 
 1. Open this folder in VS Code (File > Open Folder).
 2. Install the "Live Server" extension.

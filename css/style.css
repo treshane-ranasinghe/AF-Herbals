@@ -17,7 +17,7 @@
   --rose:#C8336B;      /* délyn toner */
   --red:#B23A2E;       /* fabulous hair oil (hibiscus) */
   --wood:#8A5A36;
-  --glow:var(--gold);  /* changes with the selected product */
+  --glow:#7A4E32;  /* changes with the selected product */
   --display:"Marcellus", "Cormorant Garamond", Georgia, serif;
   --body:"Nunito Sans", "Segoe UI", system-ui, sans-serif;
   --tamil:"Noto Sans Tamil", "Latha", sans-serif;
@@ -49,6 +49,10 @@ p{margin:0}
 .brand img{width:44px;height:44px}
 .brand b{font-family:var(--display);font-weight:400;font-size:1.3rem;color:var(--leaf);letter-spacing:.02em}
 .brand b small{font-family:var(--body);font-size:.52em;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-left:4px}
+/* Skintreat wordmark (images/skintreat-name.png) + "by AK" */
+.brand{align-items:flex-end;gap:8px}
+.brand img.name{width:auto;height:36px;border-radius:0;box-shadow:none}
+.brand small{font:800 .66rem var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);padding-bottom:2px;white-space:nowrap}
 .brand img,.estd img,.badge img{border-radius:50%;box-shadow:0 0 0 1px color-mix(in srgb,var(--gold) 55%,transparent),0 6px 14px -8px rgba(10,42,31,.5)}
 .nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
 .nav ul a{text-decoration:none;color:var(--muted);font-weight:600;font-size:.95rem;transition:color .2s}
@@ -63,7 +67,7 @@ p{margin:0}
 @media (max-width:760px){
   .nav .wrap{gap:10px}
   .brand{margin-right:auto}
-  .brand img{width:40px;height:40px}
+  .brand img.name{height:32px}
   .nav-cta{padding:8px 14px;font-size:.86rem;white-space:nowrap}
   .brand b{font-size:1.15rem;white-space:nowrap}
   .menu-btn{display:grid}
@@ -92,6 +96,7 @@ p{margin:0}
 .btn-primary{background:var(--emerald);color:#F6F2E9;box-shadow:0 12px 24px -14px rgba(10,42,31,.8)}
 .btn-ghost{background:transparent;color:var(--leaf);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--gold) 70%,transparent)}
 .btn-wa{background:#1F8F4E;color:#fff}
+.btn-gold{background:linear-gradient(140deg,#E9CF86,#C9A24E);color:var(--deep)}
 .estd{margin-top:36px;display:flex;align-items:center;gap:14px;color:var(--muted);font-size:.92rem}
 .estd img{width:54px;height:54px}
 
@@ -104,10 +109,14 @@ p{margin:0}
 .shelf-items{display:flex;align-items:flex-end;gap:clamp(10px,2vw,22px);padding:0 clamp(6px,2vw,24px)}
 .shelf-item{position:relative;flex:var(--f) 1 0;min-width:0;display:block;background:none;border:0;padding:0;cursor:pointer;
   transition:transform .5s cubic-bezier(.2,.8,.2,1),filter .5s,opacity .5s;filter:saturate(.8);opacity:.82}
-.shelf-item[data-p="glow"]{--f:38;--r:.8;--t:var(--gold)}
-.shelf-item[data-p="oil"]{--f:24;--r:.42;--t:#C9782E}
-.shelf-item[data-p="scrub"]{--f:34;--r:.66;--t:#7A4E32}
-.shelf-item[data-p="scrub"] .arch img{object-fit:cover;object-position:52% 58%;padding:0;filter:none}
+.shelf-item[data-p="scrub"]{--f:38;--r:.72;--t:#7A4E32}
+.shelf-item[data-p="shampoo"]{--f:30;--r:.52;--t:#C8336B}
+.shelf-item[data-p="oil"]{--f:26;--r:.44;--t:#6F9A3A}
+/* product photos fill the arch */
+.shelf-item .arch img{object-fit:cover;padding:0;filter:none}
+.shelf-item[data-p="scrub"] .arch img{object-position:52% 70%}
+.shelf-item[data-p="shampoo"] .arch img{object-position:45% 62%}
+.shelf-item[data-p="oil"] .arch img{object-position:50% 62%}
 .arch{display:block;width:100%;aspect-ratio:var(--r);border-radius:999px 999px 18px 18px;overflow:hidden;background:linear-gradient(180deg,color-mix(in srgb,var(--t) 8%,var(--paper)) 0%,color-mix(in srgb,var(--t) 22%,var(--paper)) 100%);
   box-shadow:0 0 0 5px var(--paper),0 0 0 6px color-mix(in srgb,var(--gold) 55%,transparent),0 34px 40px -26px rgba(60,45,20,.6);transition:box-shadow .5s}
 .arch img{width:100%;height:100%;object-fit:contain;object-position:50% 100%;padding:12% 3% 4%;filter:drop-shadow(0 16px 14px rgba(40,30,15,.35))}
@@ -147,7 +156,7 @@ p{margin:0}
 }
 .eb-more{margin-left:-12px}
 @media (max-width:440px){.eb-more{display:none}}
-@media (max-width:370px){.brand img{width:36px;height:36px}.brand{gap:8px}.nav-cta{padding:8px 12px}}
+@media (max-width:370px){.brand img.name{height:28px}.brand{gap:6px}.nav-cta{padding:8px 12px}}
 .shelf-caption{position:relative;z-index:1;margin-top:26px;min-height:92px;display:grid;grid-template-columns:1fr auto;gap:6px 18px;align-items:start;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid color-mix(in srgb,var(--gold) 35%,transparent);border-radius:22px;padding:18px 24px;box-shadow:0 24px 40px -28px rgba(10,42,31,.6)}
 .shelf-caption h3{font-size:1.6rem}
 .shelf-caption .meta{color:var(--muted);font-size:.95rem;grid-column:1}
@@ -181,10 +190,14 @@ section.block{padding:96px 0}
 .product{--c:var(--gold);display:grid;grid-template-columns:minmax(220px,380px) 1fr;gap:0;background:var(--paper);border-radius:28px;overflow:hidden;border:1px solid color-mix(in srgb,var(--line) 60%,transparent);box-shadow:0 40px 70px -50px rgba(70,55,25,.35)}
 .product[data-line="lav"]{--c:var(--lav)}
 .product[data-line="rose"]{--c:var(--rose)}
-.product[data-line="saffron"]{--c:#B8612A}
 .product[data-line="coffee"]{--c:#7A4E32}
-.product .pic-photo{padding:0;overflow:hidden}
-.product .pic-photo img{width:100%;height:100%;max-height:none;object-fit:cover;filter:none;border-radius:0}
+.product[data-line="gotu"]{--c:#4E8A3E}
+.product[data-line="aloe"]{--c:#6F9A3A}
+.product[data-line="rice"]{--c:#A07A45}
+.product .pic.pic-photo{padding:0;overflow:hidden}
+.product .pic.pic-photo img{width:100%;height:100%;max-height:none;object-fit:cover;filter:none;border-radius:0}
+.product .pic.pic-photo{min-height:380px}
+.product .pic.pic-photo img{position:absolute;inset:0}
 .product:hover .pic-photo img{transform:scale(1.05)}
 .product .pic{position:relative;background:radial-gradient(circle at 50% 42%,color-mix(in srgb,var(--c) 5%,var(--paper)) 0%,color-mix(in srgb,var(--c) 20%,var(--paper)) 80%);display:grid;place-items:center;padding:28px;min-height:320px}
 .product .pic img{max-height:340px;width:auto;filter:drop-shadow(0 26px 22px rgba(40,30,15,.35))}
@@ -205,6 +218,7 @@ section.block{padding:96px 0}
   .product,.product:nth-child(even){grid-template-columns:1fr}
   .product:nth-child(even) .pic{order:0}
   .product .pic{min-height:260px}
+  .product .pic.pic-photo{min-height:340px}
   .product .pic img{max-height:260px}
 }
 
@@ -392,7 +406,8 @@ footer a:hover{color:var(--gold-soft)}
 .foot-divider svg:nth-of-type(2){width:13px;height:20px}
 .foot-divider svg:nth-of-type(3){transform:rotate(50deg)}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr .8fr 1.2fr;gap:40px;padding:44px 0 40px}
-.foot-brand .brand img{width:64px;height:64px;box-shadow:0 0 0 3px rgba(217,188,115,.35);border-radius:50%}
+.foot-brand .brand img.name{height:52px}
+.foot-brand .brand small{color:var(--gold-soft)}
 .foot-brand .brand b{color:#F6F2E9;font-size:1.6rem}
 .foot-brand p{margin-top:16px;max-width:30ch;line-height:1.65}
 .foot-brand .ta{font-family:var(--tamil);color:var(--gold-soft);margin-top:10px;font-size:.95rem}
@@ -419,7 +434,7 @@ footer .credits a{text-decoration:underline}
 /* ============ VIDEOS ============ */
 .vframe{position:relative;overflow:hidden;isolation:isolate;background:var(--deep);
   box-shadow:0 0 0 6px var(--paper),0 0 0 7px color-mix(in srgb,var(--gold) 70%,transparent),0 50px 80px -40px rgba(40,25,5,.6)}
-.vframe video{display:block;width:100%;height:100%;object-fit:cover}
+.vframe video,.vframe img{display:block;width:100%;height:100%;object-fit:cover}
 .vframe-tall{aspect-ratio:9/16;width:min(100%,340px);border-radius:200px 200px 28px 28px;margin-inline:auto}
 .vframe-round{aspect-ratio:1;width:min(100%,440px);border-radius:50%;margin-inline:auto}
 .snd{position:absolute;right:14px;bottom:14px;z-index:2;width:42px;height:42px;border-radius:50%;border:1px solid rgba(217,188,115,.7);
@@ -431,20 +446,20 @@ footer .credits a{text-decoration:underline}
 .vframe-round .snd{right:50%;bottom:18px;transform:translateX(50%)}
 .vframe-round .snd:hover{transform:translateX(50%) scale(1.06)}
 
-/* face oil spotlight */
+/* product spotlight */
 .spot-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(32px,6vw,80px);align-items:center}
 .spot-media{position:relative}
 .spot-glow{position:absolute;left:50%;top:50%;width:130%;aspect-ratio:1;transform:translate(-50%,-50%);z-index:-1;border-radius:50%;
-  background:radial-gradient(circle,rgba(214,120,40,.28) 0%,rgba(184,145,58,.14) 38%,transparent 66%)}
+  background:radial-gradient(circle,rgba(95,160,82,.28) 0%,rgba(184,145,58,.12) 38%,transparent 66%)}
 .spot-badge{position:absolute;top:14%;left:calc(50% - min(50%,170px) - 14px);display:grid;place-items:center;width:78px;height:78px;border-radius:50%;
-  background:linear-gradient(140deg,#E9CF86,#C9A24E);color:var(--deep);font:400 1.25rem var(--display);box-shadow:0 0 0 4px var(--paper),0 16px 30px -14px rgba(40,25,5,.6);transform:rotate(-12deg)}
+  background:linear-gradient(140deg,#E9CF86,#C9A24E);color:var(--deep);font:400 1rem/1.05 var(--display);text-align:center;box-shadow:0 0 0 4px var(--paper),0 16px 30px -14px rgba(40,25,5,.6);transform:rotate(-12deg)}
 .spot-copy h2{font-size:clamp(2.4rem,5vw,3.8rem)}
-.spot-copy h2 em{font-style:normal;color:#B8612A}
+.spot-copy h2 em{font-style:normal;color:#4E8A3E}
 .spot-lede{color:var(--muted);margin-top:18px;max-width:44ch;font-size:1.08rem}
 .spot-words{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
 .spot-words li{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;border-radius:999px;font:400 1.15rem var(--display);color:var(--leaf);
   background:var(--paper);border:1px solid color-mix(in srgb,var(--gold) 45%,transparent)}
-.spot-words svg{width:10px;height:15px;fill:#C9782E}
+.spot-words svg{width:10px;height:15px;fill:#5FA052}
 .spot-meta{margin-top:18px;color:var(--muted);font-size:.9rem;font-weight:700;letter-spacing:.04em}
 .spot-buy{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
 .sp-spot{right:-40px;top:20px;width:190px;height:380px;color:var(--moss);opacity:.15;transform:rotate(-14deg)}
@@ -469,12 +484,12 @@ footer .credits a{text-decoration:underline}
   .spot-badge{left:6%;width:66px;height:66px;font-size:1.05rem}
 }
 
-/* ============ INGREDIENTS (Natural Glow) ============ */
+/* ============ INGREDIENTS ============ */
 .steps.steps-3{grid-template-columns:repeat(3,1fr)}
-.ing-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,6vw,80px);align-items:center}
-.ing-photo{margin:0;position:relative;border-radius:28px;overflow:hidden;aspect-ratio:1250/834;
+.ing-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);align-items:center}
+.ing-photo{margin:0 auto;position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/5;width:min(100%,460px);
   box-shadow:0 0 0 6px var(--paper),0 0 0 7px color-mix(in srgb,var(--gold) 65%,transparent),0 50px 80px -44px rgba(40,25,5,.6)}
-.ing-photo img{width:100%;height:100%;object-fit:cover;object-position:52% 50%;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.ing-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 60%;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
 .ing-photo:hover img{transform:scale(1.04)}
 .ing-copy h2{font-size:clamp(2rem,4.4vw,3.1rem)}
 .ing-copy > p:not(.eyebrow){color:var(--muted);margin-top:14px;max-width:42ch}
