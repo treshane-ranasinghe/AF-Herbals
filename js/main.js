@@ -1,12 +1,8 @@
 /* =====================================================================
-   SETTINGS - edit these two things
-   1. WHATSAPP_NUMBER: country code + number, no "+", no spaces, no leading 0
-      Example for 077 123 4567  ->  "94771234567"
-   2. PRODUCTS: name, shelf caption and glow colour for each product on the hero shelf.
-      Prices are shown in index.html (search "price").
+   HOMEPAGE SCRIPT
+   Prices, products, delivery and the WhatsApp number are set in js/store.js.
+   PRODUCTS below only controls the hero shelf caption and glow colour.
    ===================================================================== */
-const WHATSAPP_NUMBER = "94XXXXXXXXX";
-
 const PRODUCTS = {
   scrub:   {name:"Coffee Scrub",                meta:"Scrub · Face & body · Coffee",                    glow:"#7A4E32"},
   shampoo: {name:"4 in 1 Strengthening Shampoo", meta:"Shampoo · 300 ml · Rosemary, neem, gotu kola, moringa", glow:"#C8336B"},
@@ -29,11 +25,9 @@ function pick(id){
 }
 items.forEach(b=>b.addEventListener("click",()=>pick(b.dataset.p)));
 
-/* --- WhatsApp links: product buttons open a chat with that product named --- */
+/* --- WhatsApp links open a chat with us --- */
 document.querySelectorAll("[data-wa]").forEach(a=>{
-  const card=a.closest(".product");
-  const msg=a.dataset.msg || (card ? `Hello Skintreat by AK, I'd like to order the ${card.querySelector("h3").textContent}.` : "Hello Skintreat by AK, I'd like to place an order.");
-  a.href=`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  a.href=waLink(a.dataset.msg || "Hello Skintreat by AK, I have a question.");
 });
 
 document.getElementById("yr").textContent=new Date().getFullYear();
